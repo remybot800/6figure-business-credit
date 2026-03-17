@@ -160,7 +160,43 @@ const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'assessment', label: 'Assessment' },
+  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
+];
+
+const BLOG_POSTS = [
+  {
+    slug: 'how-to-build-business-credit-from-scratch',
+    title: "How to Build Business Credit From Scratch (Even If You're Starting at Zero)",
+    date: 'March 17, 2026',
+    readTime: '6 min read',
+    category: 'Business Credit',
+    excerpt: "Most entrepreneurs don't realize their business can have its own credit profile — completely separate from personal credit. Here's how to start building yours today.",
+    body: [
+      "Business credit is a financial profile tied to your business entity — not your Social Security Number. Just like you have a personal credit score with Experian, Equifax, and TransUnion, your business can have its own credit score with agencies like Dun & Bradstreet, Experian Business, and Equifax Business. This profile allows your business to borrow money, open credit lines, and get approved for funding entirely on its own merit.",
+      "Why does this matter? Because when you fund your business with personal credit, you put everything you own at risk. Your home, your car, your personal savings — all exposed. Business credit creates a firewall between your personal and business finances. It also unlocks higher credit limits, better interest rates, and access to funding that personal credit simply can't provide.",
+      "Step 1: Get Your EIN and Form an LLC or Corporation. Your first move is to legally separate yourself from your business. Register an LLC or corporation in your state, then apply for an Employer Identification Number (EIN) from the IRS — it's free and takes minutes at IRS.gov. Your EIN is your business's equivalent of a Social Security Number. Without it, you can't build business credit.",
+      "Step 2: Open a Business Bank Account. Once you have your EIN and business entity, open a dedicated business checking account. Use it exclusively for business transactions. This separation is critical — lenders and credit agencies look for a clean financial trail. A business bank account also establishes your business as a real, operating entity.",
+      "Step 3: Register with Dun & Bradstreet. D&B is the most important business credit bureau. Get your free DUNS Number at dnb.com. This creates your business credit file. Once you have a DUNS Number, payment history from your vendors will start reporting to your profile.",
+      "Step 4: Open Vendor Accounts That Report to Business Credit Bureaus. Starter vendors like Uline, Quill, and Grainger offer net-30 accounts with no personal credit check. Buy something small, pay on time, and they'll report your positive payment history to D&B and Experian Business. Do this with 3-5 vendors and you'll have an established business credit profile within 60-90 days. Ready to know exactly where your business stands right now? Take our free 2-minute assessment at assessment.6figurebusinesscredit.com and get your personalized roadmap.",
+    ],
+  },
+  {
+    slug: '5-mistakes-destroying-your-business-credit',
+    title: "5 Mistakes That Are Destroying Your Business Credit (And How to Fix Them)",
+    date: 'March 17, 2026',
+    readTime: '5 min read',
+    category: 'Business Credit Tips',
+    excerpt: "These five common mistakes could be silently killing your business credit score — and most entrepreneurs don't even know they're making them.",
+    body: [
+      "Building business credit takes time and strategy — but destroying it can happen fast. Worse, most entrepreneurs are making mistakes that silently sabotage their business credit profile without even realizing it. Here are the five most common mistakes and exactly how to fix them.",
+      "Mistake #1: Mixing Personal and Business Finances. This is the #1 killer of business credit. When you swipe your personal card for business expenses — or deposit business income into your personal account — you blur the line between you and your business. Lenders see this as a red flag. The fix: open a dedicated business checking account and use it exclusively for business transactions. Every dollar in, every dollar out should flow through that account.",
+      "Mistake #2: Not Being Incorporated. Sole proprietors can't build true business credit. Without an LLC or corporation, your business doesn't legally exist as a separate entity — meaning any credit is tied directly to you personally. The fix: register an LLC or S-Corp in your state and get your EIN from the IRS. This is the foundation everything else is built on.",
+      "Mistake #3: No Dedicated Business Phone Number or Address. Business credit bureaus verify your business information. If you're using a personal cell phone or home address, your business may not be verifiable — which can tank your credibility score with D&B. The fix: get a dedicated business phone number (Google Voice works) and use a registered business address. A virtual office is perfectly acceptable.",
+      "Mistake #4: Not Having Any Vendor Accounts. If no one is reporting your payment history to the business credit bureaus, you have no credit score. Many business owners assume that just having an LLC is enough — it's not. The fix: open net-30 accounts with starter vendors like Uline, Quill, or Crown Office Supplies. These companies report to D&B and Experian Business. Pay on time and your score builds automatically.",
+      "Mistake #5: Not Monitoring Your Business Credit. Your business credit report can contain errors — wrong addresses, missed payments that weren't yours, or duplicate accounts. If you're not checking it regularly, these errors can cost you funding approvals. The fix: check your D&B, Experian Business, and Equifax Business reports regularly. Dispute any inaccuracies immediately. Think you might be making some of these mistakes right now? Take our free assessment and find out exactly where your business credit stands — and what to do about it.",
+    ],
+  },
 ];
 
 // ─── PAGES ────────────────────────────────────────────────
@@ -468,12 +504,100 @@ function ContactPage() {
   );
 }
 
+function BlogListPage({ navigate, setCurrentPost }) {
+  return (
+    <main className="section" style={{ paddingTop: '140px' }}>
+      <FadeIn>
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="gold-line" />
+          <p className="section-label">Insights & Education</p>
+          <h1 className="section-title">Business Credit <span className="gold-text">Blog</span></h1>
+          <p style={{ color: '#A8A29E', lineHeight: 1.7, maxWidth: '560px', margin: '16px auto 0', fontWeight: 300, fontSize: '17px' }}>
+            Practical guides and strategies to help you build 6-figure business credit.
+          </p>
+        </div>
+      </FadeIn>
+      <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        {BLOG_POSTS.map((post, i) => (
+          <FadeIn key={post.slug} delay={i * 0.1}>
+            <article style={{ border: '1px solid rgba(191,155,48,0.15)', borderRadius: '12px', padding: '36px', background: 'rgba(255,255,255,0.02)', transition: 'border-color 0.3s, background 0.3s' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(191,155,48,0.4)'; e.currentTarget.style.background = 'rgba(191,155,48,0.04)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(191,155,48,0.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; }}>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap' }}>
+                <span style={{ background: 'rgba(191,155,48,0.12)', color: '#BF9B30', fontSize: '12px', fontWeight: 600, padding: '4px 12px', borderRadius: '20px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{post.category}</span>
+                <span style={{ color: '#57534E', fontSize: '13px' }}>{post.date}</span>
+                <span style={{ color: '#57534E', fontSize: '13px' }}>· {post.readTime}</span>
+              </div>
+              <h2 style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 700, lineHeight: 1.3, marginBottom: '12px', color: '#F5F0EB' }}>{post.title}</h2>
+              <p style={{ color: '#A8A29E', lineHeight: 1.7, fontWeight: 300, marginBottom: '24px', fontSize: '15px' }}>{post.excerpt}</p>
+              <button
+                onClick={() => { setCurrentPost(post); navigate('blog-post'); }}
+                className="cta-btn-outline"
+                style={{ fontSize: '14px', padding: '10px 24px' }}
+              >
+                <span>Read More</span><ArrowRight />
+              </button>
+            </article>
+          </FadeIn>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+function BlogPostPage({ post, navigate }) {
+  return (
+    <main className="section" style={{ paddingTop: '140px' }}>
+      <div style={{ maxWidth: '740px', margin: '0 auto' }}>
+        <FadeIn>
+          <button
+            onClick={() => navigate('blog')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#BF9B30', background: 'none', border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 600, marginBottom: '40px', padding: 0, letterSpacing: '0.03em' }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Blog
+          </button>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
+            <span style={{ background: 'rgba(191,155,48,0.12)', color: '#BF9B30', fontSize: '12px', fontWeight: 600, padding: '4px 12px', borderRadius: '20px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{post.category}</span>
+            <span style={{ color: '#57534E', fontSize: '13px' }}>{post.date}</span>
+            <span style={{ color: '#57534E', fontSize: '13px' }}>· {post.readTime}</span>
+          </div>
+          <h1 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 800, lineHeight: 1.2, marginBottom: '32px', color: '#F5F0EB' }}>{post.title}</h1>
+          <div style={{ width: '60px', height: '3px', background: 'linear-gradient(90deg, #BF9B30, #E8C84A)', marginBottom: '40px' }} />
+        </FadeIn>
+        <div>
+          {post.body.map((para, i) => (
+            <FadeIn key={i} delay={i * 0.08}>
+              <p style={{ color: '#A8A29E', lineHeight: 1.8, fontSize: '16px', fontWeight: 300, marginBottom: '24px' }}>{para}</p>
+            </FadeIn>
+          ))}
+        </div>
+        <FadeIn delay={0.3}>
+          <div style={{ marginTop: '64px', padding: '40px', border: '1px solid rgba(191,155,48,0.25)', borderRadius: '12px', background: 'rgba(191,155,48,0.04)', textAlign: 'center' }}>
+            <div className="gold-line" />
+            <h2 style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, marginBottom: '12px' }}>
+              Ready to Build Your <span className="gold-text">Business Credit?</span>
+            </h2>
+            <p style={{ color: '#A8A29E', fontWeight: 300, marginBottom: '28px', lineHeight: 1.6 }}>
+              Take the free 2-minute assessment and get your personalized business credit roadmap — no credit check required.
+            </p>
+            <a href={ASSESSMENT_URL} className="cta-btn" target="_blank" rel="noopener noreferrer">
+              <span>Take Your Free Assessment</span><ArrowRight />
+            </a>
+          </div>
+        </FadeIn>
+      </div>
+    </main>
+  );
+}
+
 // ─── MAIN APP ─────────────────────────────────────────────
 
 export default function App() {
   const [page, setPage] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentPost, setCurrentPost] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -482,6 +606,7 @@ export default function App() {
   }, []);
 
   const navigate = (p) => {
+    if (p !== 'blog' && p !== 'blog-post') setCurrentPost(null);
     setPage(p);
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -518,6 +643,8 @@ export default function App() {
       {page === 'home' && <HomePage navigate={navigate} />}
       {page === 'about' && <AboutPage />}
       {page === 'assessment' && <AssessmentPage />}
+      {page === 'blog' && <BlogListPage navigate={navigate} setCurrentPost={setCurrentPost} />}
+      {page === 'blog-post' && currentPost && <BlogPostPage post={currentPost} navigate={navigate} />}
       {page === 'contact' && <ContactPage />}
 
       {/* FOOTER */}
